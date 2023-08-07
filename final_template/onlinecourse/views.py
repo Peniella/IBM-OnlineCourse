@@ -87,7 +87,7 @@ class CourseListView(generic.ListView):
 class CourseDetailView(generic.DetailView):
     model = Course
     template_name = 'onlinecourse/course_detail_bootstrap.html'
-
+    
 
 def enroll(request, course_id):
     course = get_object_or_404(Course, pk=course_id)
