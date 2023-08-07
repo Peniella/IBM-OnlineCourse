@@ -50,13 +50,13 @@
                     </div>
                     <button data-toggle="collapse" data-target="#exam-demo">Start Exam</button>
                     <div id="exam-demo" class="collapse">
-                        <form id="questionform" action="{% url 'onlinecourse:submitform' %}" method="post">
-                            ... for each question in the course ...
+                        <form id="questionform" action="{% url 'onlinecourse:submit' %}" method="post">
+                            {% for question in course %}
                             <div class="card mt-1">
-                                <div class="card-header"><h5>{{ question.question_text}}</h5></div>
+                                <div class="card-header"><h5>{{ question.title}}</h5></div>
                                 {% csrf_token %}
                                 <div class="form-group">
-                                   ... for each choice in the question ...
+                                   {% for choice in question %}
                                     <div class="form-check">
                                         <label class="form-check-label">
                                             <input type="checkbox" name="choice_{{choice.id}}"
@@ -64,8 +64,10 @@
                                                    value="{{choice.id}}">{{ choice.choice_text }}
                                         </label>
                                     </div>
+                                    {% endfor %}
                                 </div>
                             </div>
+                            {% endfor %}
                         <input class="btn btn-success btn-block" type="submit" value="Submit">
                 </form>
                     </div>
