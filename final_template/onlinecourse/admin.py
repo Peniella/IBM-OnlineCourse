@@ -34,7 +34,7 @@ class QuestionAdmin(admin.ModelAdmin):
 
 
 class ChoiceAdmin(admin.ModelAdmin):
-    list_display = ['question','choice','is_correct']
+    list_display = ['question','choice_text','is_correct']
 
 
 
