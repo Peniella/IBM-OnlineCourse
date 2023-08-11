@@ -112,7 +112,7 @@ def enroll(request, course_id):
          # Redirect to show_exam_result with the submission id
 
 def submit(request, course_id):
-    enrol_obj=Enrollment.objects.get(course=course_id)
+    enrol_obj=Enrollment.objects.get(user=request.user,course=course_id)
     submitted_anwsers = []
     for key in request.POST:
         if key.startswith('choice'):
@@ -123,7 +123,7 @@ def submit(request, course_id):
     submission_obj=Submission.objects.create(enrollment=enrol_obj,choices=submitted_anwsers)
     submission_obj.save()
     sub_id=submission_obj.id
-    return redirect('show_exam_result',submission_id=sub_id)
+    return redirect('show_exam_result',course_id=course_id,submission_id=sub_id)
 
 
 # <HINT> A example method to collect the selected choices from the exam form from the request object
