@@ -108,7 +108,7 @@ class Question(models.Model):
 
 class Choice(models.Model):
     question=models.ForeignKey(Question,on_delete=models.SET_NULL,null=True,blank=True)
-    choice=models.TextField(max_length=10000)
+    choice_text=models.TextField(max_length=10000)
     is_correct=models.BooleanField(default=True)
 
 
